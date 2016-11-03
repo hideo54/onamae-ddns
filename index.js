@@ -1,6 +1,6 @@
 const publicIp = require('public-ip');
 const Nightmare = require('nightmare');
-const nightmare = Nightmare({show: true});
+const nightmare = Nightmare();
 const fs = require('fs');
 
 const settings = require('./settings.json');
