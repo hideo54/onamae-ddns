@@ -1,0 +1,10 @@
+{
+    "username": "1234567",
+    "password": "XXXXXXXXXXXX",
+    "domain": "example.com",
+    "subdomains": [
+        "sub1.example.com",
+        "sub2.example.com"
+    ],
+    "publicIp": "123.45.67.89"
+}
