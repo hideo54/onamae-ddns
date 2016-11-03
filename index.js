@@ -2,6 +2,7 @@ const publicIp = require('public-ip');
 const Nightmare = require('nightmare');
 const nightmare = Nightmare();
 const fs = require('fs');
+const IncomingWebhooks = require('@slack/client').IncomingWebhook;
 
 const settings = require('./settings.json');
 
@@ -49,8 +50,13 @@ publicIp.v4().then((ip) => {
         .click('a.btn07') // -> Done page
         .end()
         .then(() => {
-            console.log(`Your public IP address has changed from previous ${settings.publicIp} to ${ip}.`)
-            console.log('This change has just been reflected in お名前.com.');
+            let message = `Your public IP address has changed from previous ${settings.publicIp} to ${ip}.`;
+            message += '\nThis change has just been reflected in お名前.com.';
+            console.log(message);
+            if (settings.slackWebhook) {
+                const slack = IncomingWebhooks(settings.slackWebhook);
+                slack.send(message);
+            }
             settings.publicIp = ip; // Cache to settings.json
             fs.writeFile('settings.json', JSON.stringify(settings, null, 4), (err) => {
                 console.log('Modified the change to settings.json.');

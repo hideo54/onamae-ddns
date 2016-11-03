@@ -11,6 +11,7 @@ Public IPアドレスの変更をお名前.comのDNS設定に反映させるク�
     * `username`, `password` の値にお名前.comへのログインに必要なユーザー名、パスワードを代入
     * `domain` の値に管理しているドメイン名を代入
     * `subdomains` の値に、クライアントのPublic IPアドレスの変更を反映させたいサブドメインらの配列を代入
+    * Slackに変更の旨を通知させたい場合、 `slackWebhook` に適切なIncoming Webhook用のURLを文字列として代入。必要ない場合はnullを指定する
     * `publicIp` の値に現在のPublic IPアドレスを代入
 5. 定期的に `node index.js` を実行するよう設定する
 

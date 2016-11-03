@@ -6,6 +6,7 @@
     "author": "hideo54",
     "license": "Apache-2.0",
     "dependencies": {
+        "@slack/client": "^3.6.0",
         "nightmare": "^2.8.1",
         "public-ip": "^2.0.1"
     },

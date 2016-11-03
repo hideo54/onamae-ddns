@@ -6,5 +6,6 @@
         "sub1.example.com",
         "sub2.example.com"
     ],
+    "slackWebhook": null,
     "publicIp": "123.45.67.89"
 }
