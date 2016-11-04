@@ -51,7 +51,7 @@ publicIp.v4().then((ip) => {
         .end()
         .then(() => {
             let message = `Your public IP address has changed from previous ${settings.publicIp} to ${ip}.`;
-            message += '\nThis change has just been reflected in お名前.com.';
+            message += '\nThis change has just been reflected in onamae.com.';
             console.log(message);
             if (settings.slackWebhook) {
                 const slack = new IncomingWebhooks(settings.slackWebhook);
