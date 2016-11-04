@@ -1,6 +1,6 @@
 const publicIp = require('public-ip');
 const Nightmare = require('nightmare');
-const nightmare = Nightmare();
+const nightmare = Nightmare({show: true});
 const fs = require('fs');
 const IncomingWebhooks = require('@slack/client').IncomingWebhook;
 
@@ -54,8 +54,11 @@ publicIp.v4().then((ip) => {
             message += '\nThis change has just been reflected in お名前.com.';
             console.log(message);
             if (settings.slackWebhook) {
-                const slack = IncomingWebhooks(settings.slackWebhook);
-                slack.send(message);
+                const slack = new IncomingWebhooks(settings.slackWebhook);
+                slack.send({
+                    text: message,
+                    username: 'Onamae-DDNS'
+                });
             }
             settings.publicIp = ip; // Cache to settings.json
             fs.writeFile('settings.json', JSON.stringify(settings, null, 4), (err) => {
