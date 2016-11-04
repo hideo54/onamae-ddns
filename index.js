@@ -57,6 +57,7 @@ publicIp.v4().then((ip) => {
                 const slack = new IncomingWebhooks(settings.slackWebhook);
                 slack.send({
                     text: message,
+                    iconEmoji: ':white_check_mark:'
                     username: 'Onamae-DDNS'
                 });
             }
@@ -67,5 +68,13 @@ publicIp.v4().then((ip) => {
         })
         .catch((err) => {
             console.error(`Error: ${err}`);
+            if (settings.slackWebhook) {
+                const slack = new IncomingWebhooks(settings.slackWebhook);
+                slack.send({
+                    text: `An error occurred: ${err}\nMaybe this software need to be updated.`,
+                    iconEmoji: ':X:'
+                    username: 'Onamae-DDNS Error'
+                });
+            }
         });
 });
